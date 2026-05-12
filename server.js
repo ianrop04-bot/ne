@@ -8,7 +8,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // Store bot connection
-let sock = null;
+
 let isConnected = false;
 let pairingCode = null;
 
@@ -21,7 +21,7 @@ function generateSessionId() {
 async function connectWhatsApp() {
     const { state, saveCreds } = await useMultiFileAuthState('auth_info');
     
-    sock = makeWASocket({
+    let sock = makeWASocket({
         auth: state,
         printQRInTerminal: false,
         browser: Browsers.ubuntu('Test Bot')
